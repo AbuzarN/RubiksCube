@@ -53,6 +53,7 @@ void printcube()
     }
     std::cout << std::endl;
   }
+  std::cout << std::endl;
 
 
 
@@ -96,7 +97,8 @@ void printcube()
   
   
   
-  
+    std::cout << std::endl;
+
   for (auto &row : yellow)
   {
     std::cout << std::setfill(' ') << std::setw(width);
