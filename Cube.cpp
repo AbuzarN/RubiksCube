@@ -32,10 +32,13 @@
 
 void printcube();
 void F();
+void Fp();
+void RotateSecondRow(char (*)[3], char (*)[3], char (*)[3], char(*)[3], char (*)[3]);
 int main() 
 {
 
   F();
+  //Fp();
   printcube();
   
   return 0;
@@ -105,34 +108,45 @@ void printcube()
 
 void F()
 {
-  char tempE = green[0][0];
-  char tempM= green[0][1];
-  char temp1=white[2][0];
-  char temp2=white[2][1];
-  char temp3=white[2][2];
+  RotateSecondRow(green, orange, red, white, yellow);
+}
+void Fp()
+{
+  F();
+  F();
+  F();
+}
 
-  green[0][0]=green[2][0];
-  green[2][0]=green[2][2];
-  green[2][2]=green[0][2];
-  green[0][2]=tempE;
-  green[0][1]=green[1][0];
-  green[1][0]=green[2][1];
-  green[2][1]=green[1][2];
-  green[1][2]=tempM;
+void RotateSecondRow(char (*F)[3], char (*L)[3], char (*R)[3], char(*U)[3], char (*D)[3])
+{
+  char tempE = F[0][0];
+  char tempM= F[0][1];
+  char temp1=U[2][0];
+  char temp2=U[2][1];
+  char temp3=U[2][2];
 
-  white[2][0]=orange[2][2];
-  white[2][1]=orange[1][2];
-  white[2][2]=orange[0][2];
+  F[0][0]=F[2][0];
+  F[2][0]=F[2][2];
+  F[2][2]=F[0][2];
+  F[0][2]=tempE;
+  F[0][1]=F[1][0];
+  F[1][0]=F[2][1];
+  F[2][1]=F[1][2];
+  F[1][2]=tempM;
 
-  orange[2][2]=yellow[0][2];
-  orange[1][2]=yellow[0][1];
-  orange[0][2]=yellow[0][0];
+  U[2][0]=L[2][2];
+  U[2][1]=L[1][2];
+  U[2][2]=L[0][2];
 
-  yellow[0][2]=red[0][0];
-  yellow[0][1]=red[1][0];
-  yellow[0][0]=red[2][0];
+  L[2][2]=D[0][2];
+  L[1][2]=D[0][1];
+  L[0][2]=D[0][0];
+
+  D[0][2]=R[0][0];
+  D[0][1]=R[1][0];
+  D[0][0]=R[2][0];
   
-  red[0][0]=temp1;
-  red[1][0]=temp2;
-  red[2][0]=temp3;
+  R[0][0]=temp1;
+  R[1][0]=temp2;
+  R[2][0]=temp3;
 }
