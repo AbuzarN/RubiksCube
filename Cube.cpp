@@ -35,12 +35,15 @@ void F();
 void Fp();
 void R();
 void Rp();
+void L();
+void Lp();
+void U();
 void RotateSecondRow(char (*)[3], char (*)[3], char (*)[3], char(*)[3], char (*)[3]);
 int main() 
 {
 
-  R();
-  Rp();
+  //L();
+  Lp();
   printcube();
   
   return 0;
@@ -157,6 +160,46 @@ void Rp()
   R();
   R();
   R();
+}
+//F
+void L()
+{
+  char tempY[3][3]={{yellow[2][0],yellow[1][0],yellow[0][0]},
+                    {yellow[2][1],yellow[1][1],yellow[0][1]},
+                    {yellow[2][2],yellow[1][2],yellow[0][2]}};
+  char tempW[3][3]={{white[0][2],white[1][2],white[2][2]},
+                    {white[0][1],white[1][1],white[2][1]},
+                    {white[0][0],white[1][0],white[2][0]}};
+  RotateSecondRow(orange,blue,green,tempW, tempY);
+  
+  yellow[0][0] =tempY[0][2];
+  yellow[0][1] =tempY[1][2];
+  yellow[0][2] =tempY[2][2];
+  yellow[1][0] =tempY[0][1];
+  yellow[1][2] =tempY[2][1];
+  yellow[2][0] =tempY[0][0];
+  yellow[2][1] =tempY[1][0];
+  yellow[2][2] =tempY[2][0];
+
+  white[0][0] =tempW[2][0];
+  white[0][1] =tempW[1][0];
+  white[0][2] =tempW[0][0];
+  white[1][0] =tempW[2][1];
+  white[1][2] =tempW[0][1];
+  white[2][0] =tempW[2][2];
+  white[2][1] =tempW[1][2];
+  white[2][2] =tempW[0][2];
+}
+//L'
+void Lp()
+{
+L();
+L();
+L();
+}
+void U()
+{
+  //Do something
 }
 //Generic Rotate all
 void RotateSecondRow(char (*F)[3], char (*L)[3], char (*R)[3], char(*U)[3], char (*D)[3])
