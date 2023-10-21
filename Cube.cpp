@@ -38,12 +38,12 @@ void Rp();
 void L();
 void Lp();
 void U();
+void Up();
+void D();
+void Dp();
 void RotateSecondRow(char (*)[3], char (*)[3], char (*)[3], char(*)[3], char (*)[3]);
 int main() 
 {
-
-  //L();
-  Lp();
   printcube();
   
   return 0;
@@ -63,10 +63,7 @@ void printcube()
     std::cout << std::endl;
   }
   std::cout << std::endl;
-
-
-
-
+  
   for (int row = 0; row < rowlength; row++)
   {
     
@@ -111,9 +108,7 @@ void printcube()
   }
 }
 
-
 //Cubic functions
-
 //F
 void F()
 {
@@ -197,9 +192,89 @@ L();
 L();
 L();
 }
+//U
 void U()
 {
   //Do something
+  char tempE = white[0][0];
+  char tempM= white[0][1];
+  white[0][0]=white[2][0];
+  white[2][0]=white[2][2];
+  white[2][2]=white[0][2];
+  white[0][2]=tempE;
+  white[0][1]=white[1][0];
+  white[1][0]=white[2][1];
+  white[2][1]=white[1][2];
+  white[1][2]=tempM;
+
+  char t1 = orange [0][0];
+  char t2 = orange [0][1];
+  char t3 = orange [0][2];
+
+  orange[0][0]=green[0][0];
+  orange[0][1]=green[0][1];
+  orange[0][2]=green[0][2];
+  
+  green[0][0]=red[0][0];
+  green[0][1]=red[0][1];
+  green[0][2]=red[0][2];
+
+  red[0][0]=blue[0][0];
+  red[0][1]=blue[0][1];
+  red[0][2]=blue[0][2];
+
+  blue[0][0]=t1;
+  blue[0][1]=t2;
+  blue[0][2]=t3;
+
+}
+//U'
+void Up()
+{
+  U();
+  U();
+  U();
+}
+//D
+void D()
+{
+  char tempE = yellow[0][0];
+  char tempM= yellow[0][1];
+  yellow[0][0]=yellow[2][0];
+  yellow[2][0]=yellow[2][2];
+  yellow[2][2]=yellow[0][2];
+  yellow[0][2]=tempE;
+  yellow[0][1]=yellow[1][0];
+  yellow[1][0]=yellow[2][1];
+  yellow[2][1]=yellow[1][2];
+  yellow[1][2]=tempM;
+
+  char t1 = orange [2][0];
+  char t2 = orange [2][1];
+  char t3 = orange [2][2];
+
+  orange[2][0]=blue[2][0];
+  orange[2][1]=blue[2][1];
+  orange[2][2]=blue[2][2];
+  
+  blue[2][0]=red[2][0];
+  blue[2][1]=red[2][1];
+  blue[2][2]=red[2][2];
+
+  red[2][0]=green[2][0];
+  red[2][1]=green[2][1];
+  red[2][2]=green[2][2];
+
+  green[2][0]=t1;
+  green[2][1]=t2;
+  green[2][2]=t3;
+}
+//Dp
+void Dp()
+{
+  D();
+  D();
+  D();
 }
 //Generic Rotate all
 void RotateSecondRow(char (*F)[3], char (*L)[3], char (*R)[3], char(*U)[3], char (*D)[3])
