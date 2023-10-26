@@ -1,5 +1,8 @@
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
+#include <ctime>
+
 
   int width = 9;
   int rowlength = 3;
@@ -42,8 +45,17 @@ void Up();
 void D();
 void Dp();
 void RotateSecondRow(char (*)[3], char (*)[3], char (*)[3], char(*)[3], char (*)[3]);
+void scramblecube();
 int main() 
 {
+  std::cout << "Starting Cube: " << std::endl;
+  std::cout << std::endl;
+  printcube();
+
+  std::cout << std::endl;
+  std::cout << "Cube after Running Scrambler" << std::endl;
+  std::cout << std::endl;
+  scramblecube();
   printcube();
   
   return 0;
@@ -309,4 +321,51 @@ void RotateSecondRow(char (*F)[3], char (*L)[3], char (*R)[3], char(*U)[3], char
   R[0][0]=temp1;
   R[1][0]=temp2;
   R[2][0]=temp3;
+}
+
+void scramblecube()
+{
+
+  srand(time(NULL));
+  int move[20];
+  for(int i = 0; i < 20; i++){
+
+    move[i] = 1 + rand() % 10;
+    
+  }
+
+    for(int i = 0; i < 20; i++){
+      
+      if(move[i] == 1){
+        F();
+      }
+      else if(move[i] == 2){
+        Fp();
+      }
+      else if(move[i] == 3){
+        R();
+      }
+      else if(move[i] == 4){
+        Rp();
+      }
+      else if(move[i] == 5){
+        U();
+      }
+      else if(move[i] == 6){
+        Up();
+      }
+      else if(move[i] == 7){
+        L();
+      }
+      else if(move[i] == 8){
+        Lp();
+      }
+      else if(move[i] == 9){
+        D();
+      }
+      else{
+        Dp();
+      }
+    }
+
 }

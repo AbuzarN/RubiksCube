@@ -1,1 +1,1 @@
-std::cout << std::endl;
+out << std::endl;
