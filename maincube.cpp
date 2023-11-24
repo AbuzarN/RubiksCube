@@ -12,14 +12,21 @@ int main()
 {
 
     Rubix cube;
-    cube.make_cube('W', 'G', 'Y', 'O', 'R', 'B');
+    
    
-    std::cout << "Fresh Cube!" << std::endl;
+    std::cout << "Premade cube!" << std::endl;
+    cube.Up();
     cube.display_cube();
-    cube.scramblecube();
-    cube.white_cross();
-    cube.white_corners();
-    cube.second_layer();
+    cube.F();
+    cube.right_shimmy();
+    cube.Fp();
+    cube.F();
+    cube.right_shimmy();
+    cube.Fp();
+    cube.U();
+    cube.display_cube();
+    cube.yellow_cross();
+    
     
 
     return 0;

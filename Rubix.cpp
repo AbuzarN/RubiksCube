@@ -1061,7 +1061,37 @@ bool Rubix::side_pieces_check()
 
 void Rubix::yellow_cross()
 {
+    green_front();
+    
+    std::cout << "Beginning solution for yellow cross" << std::endl;
 
+    const char topcolor = top[1][1];
+
+    while(scan_yellow_cross(topcolor) != "cross complete")
+    {
+        if(scan_yellow_cross(topcolor) == "L-shape not set")
+        {
+            std::cout << "L-shape found, setting now" << std::endl;
+            while(top[1][0] != 'Y' || top[0][1] != 'Y')
+            {
+                U();
+            }
+            std::cout << "L-shape set" << std::endl;
+        }
+        else if(scan_yellow_cross(topcolor) == "line not set")
+        {
+            std::cout << "Vertical line found, shifting it horizontally now" << std::endl;
+            U();
+            std::cout << "Line set" << std::endl;
+        }
+
+        F();
+        right_shimmy();
+        Fp();
+    }
+
+    std::cout << "Yellow cross complete" << std::endl;
+    display_cube();
 }
 
 std::string Rubix::scan_yellow_cross(char color1)
@@ -1070,7 +1100,7 @@ std::string Rubix::scan_yellow_cross(char color1)
 
     if(top[0][1] == color1 && top[1][0] == color1 && top[2][1] == color1 && top[1][2] == color1)
     {
-        status = "Cross complete";
+        status = "cross complete";
     }
 
     else if(top[0][1] == color1 && top[1][1] == color1 && top[2][1] == color1)

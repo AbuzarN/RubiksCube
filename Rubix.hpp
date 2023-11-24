@@ -3,7 +3,11 @@
 class Rubix
 {
 public:
-  char top[3][3]={}, front[3][3] = {}, bottom[3][3] = {}, left[3][3] = {}, right[3][3] = {}, back[3][3] = {};
+  char top[3][3]={{'O','Y','R'},{'G','Y','R'},{'R','Y','O'}}, front[3][3] = {{'B','B','B'},{'G','G','G'},{'G','G','G'}}, 
+       bottom[3][3] = {{'W','W','W'},{'W','W','W'},{'W','W','W'}}, left[3][3] = {{'G','Y','Y'},{'R','R','R'},{'R','R','R'}}, 
+       right[3][3] = {{'Y','Y','G'},{'O','O','O'},{'O','O','O'}}, back[3][3] = {{'Y','O','Y'},{'B','B','B'},{'B','B','B'}};
+  
+  
   void make_cube(char , char , char , char , char , char);
   Rubix();
   
