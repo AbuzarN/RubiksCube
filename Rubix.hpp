@@ -3,9 +3,9 @@
 class Rubix
 {
 public:
-  char top[3][3]={{'O','Y','R'},{'G','Y','R'},{'R','Y','O'}}, front[3][3] = {{'B','B','B'},{'G','G','G'},{'G','G','G'}}, 
-       bottom[3][3] = {{'W','W','W'},{'W','W','W'},{'W','W','W'}}, left[3][3] = {{'G','Y','Y'},{'R','R','R'},{'R','R','R'}}, 
-       right[3][3] = {{'Y','Y','G'},{'O','O','O'},{'O','O','O'}}, back[3][3] = {{'Y','O','Y'},{'B','B','B'},{'B','B','B'}};
+  char top[3][3]={{'R','Y','B'},{'Y','Y','Y'},{'Y','Y','O'}}, front[3][3] = {{'G','G','Y'},{'G','G','G'},{'G','G','G'}}, 
+       bottom[3][3] = {{'W','W','W'},{'W','W','W'},{'W','W','W'}}, left[3][3] = {{'B','R','R'},{'R','R','R'},{'R','R','R'}}, 
+       right[3][3] = {{'G','O','Y'},{'O','O','O'},{'O','O','O'}}, back[3][3] = {{'O','B','Y'},{'B','B','B'},{'B','B','B'}};
   
   
   void make_cube(char , char , char , char , char , char);
@@ -73,6 +73,22 @@ bool side_pieces_check();
 //all functions for yellow cross
 void yellow_cross();
 std::string scan_yellow_cross(char color1);
+
+//all functions for the yellow edges
+void yellow_edges();
+void set_yellow_edges();
+std::string scan_yellow_edge(char color1, char color2, char color3, char color4);
+
+
+//all functions for yellow corners
+void yellow_corners();
+void set_yellow_corners();
+int scan_yellow_corners();
+std::string position_yellow_corners();
+
+//all functions for the final step
+void final_step();
+
 
 
 }; 

@@ -416,6 +416,8 @@ void Rubix::scramblecube()
     }
     std::cout << std::endl;
 
+    display_cube();
+
 }
 
 void Rubix::green_front()
@@ -942,6 +944,7 @@ void Rubix::second_layer()
                 }
                 std::cout << "Piece brought back. Setting into final position" << std::endl;
                 pop_piece_right();
+                turn_cube_right();
             }
             else if(scan_side_pieces(color1, color2) == "top middle matching right")
             {
@@ -955,6 +958,7 @@ void Rubix::second_layer()
                 turn_cube_left();
                 Up();
                 pop_piece_left();
+                turn_cube_right();
                 turn_cube_right();
             }
             else if(scan_side_pieces(color1, color2) == "left middle")
@@ -980,6 +984,8 @@ void Rubix::second_layer()
                     pop_piece_left();
                     turn_cube_right();
                 }
+
+                turn_cube_right();
 
             }
 
@@ -1117,6 +1123,322 @@ std::string Rubix::scan_yellow_cross(char color1)
 
     return status;
 }
+
+
+
+void Rubix::yellow_edges()
+{
+    green_front();
+    const char frontcolor = front[1][1], rightcolor = right[1][1], backcolor = back[1][1], leftcolor = left[1][1];
+    std::cout << "Beginning solution for Yellow Edges" << std::endl;
+
+    while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) != "yellow edges complete")
+    {
+        if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "edges set but not matched")
+        {
+            std::cout << "yellow edges set but not matched. positioning now" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "edges set but not matched")
+            {
+                U();
+            }
+        }
+
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "front right L not matched")
+        {
+            std::cout << "front right matching. setting into place" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "front right L not matched")
+            {
+                U();
+            }
+            std::cout << "front right set. positioning now" << std::endl;
+            turn_cube_right();
+            std::cout << "front right positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "front right L matched")
+        {
+            std::cout << "front right already set. positioning now" << std::endl;
+            turn_cube_right();
+            std::cout << "front right positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "right back L not matched")
+        {
+            std::cout << "right back matching. setting into place" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "right back L not matched")
+            {
+                U();
+            }
+            std::cout << "right back set. performing rotation" << std::endl;
+            set_yellow_edges();
+        }
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "right back L matched")
+        {
+            std::cout << "right back already set. performing rotation" << std::endl;
+            set_yellow_edges();
+        }
+
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "back left L not matched")
+        {
+            std::cout << "back left matching. setting into place" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "back left L not matched")
+            {
+                U();
+            }
+            std::cout << "back left set. positioning now" << std::endl;
+            turn_cube_left();
+            std::cout << "back left positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "back left L matched")
+        {
+            std::cout << "back left already set. positioning now" << std::endl;
+            turn_cube_left();
+            std::cout << "back left positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "front left L not matched")
+        {
+            std::cout << "front left matching. setting into place" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "front left L not matched")
+            {
+                U();
+            }
+            std::cout << "front left set. positioning now" << std::endl;
+            turn_cube_left();
+            turn_cube_left();
+            std::cout << "front left positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "front left L matched")
+        {
+            std::cout << "front left already set. positioning now" << std::endl;
+            turn_cube_left();
+            turn_cube_left();
+            std::cout << "front left positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "opposite front back not set")
+        {
+            std::cout << "front back opposite matching. setting into place" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "opposite front back not set")
+            {
+                U();
+            }
+            std::cout << "front back opposite set. positioning now" << std::endl;
+            turn_cube_right();
+            std::cout << "front back opposite positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "opposite front back set")
+        {
+            std::cout << "front back opposite already set. positioning now" << std::endl;
+            turn_cube_right();
+            std::cout << "front back opposite positioned. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "opposite right left not set")
+        {
+            std::cout << "right left opposite matching. setting into place" << std::endl;
+            while(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "opposite right left not set")
+            {
+                U();
+            }
+            std::cout << "right left opposite set. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        else if(scan_yellow_edge(frontcolor, rightcolor, backcolor, leftcolor) == "opposite right left set")
+        {
+            std::cout << "right left opposite already set. performing rotations" << std::endl;
+            set_yellow_edges();
+        }
+        
+
+
+    }
+
+    std::cout << "Yellow Edges Complete" << std::endl;
+    display_cube();
+
+}
+
+//color1 = green color2 = orange color3 = blue color4 = red
+std::string Rubix::scan_yellow_edge(char color1, char color2, char color3, char color4)
+{
+    std::string status = "";
+
+    if(front[0][1] == front[1][1] && right[0][1] == right[1][1] && back[0][1] == back[1][1])
+    {
+        status = "yellow edges complete";
+    }
+
+    else if((front[0][1] == color2 && right[0][1] == color3 && back[0][1] == color4 && left[0][1] == color1) || 
+            (front[0][1] == color3 && right[0][1] == color4 && back[0][1] == color1 && left[0][1] == color2) ||
+            (front[0][1] == color4 && right[0][1] == color1 && back[0][1] == color2 && left[0][1] == color3))
+    {
+        status = "edges set but not matched";
+    }
+
+    else if((left[0][1] == color1 && front[0][1] == color2) || (back[0][1] == color1 && left[0][1] == color2) || (right[0][1] == color1 && back[0][1] == color2))
+    {
+        status = "front right L not matched";
+    }
+    else if((front[0][1] == color1 && right[0][1] == color2))
+    {
+        status = "front right L matched";
+    }
+
+    else if((front[0][1] == color2 && right[0][1] == color3) || (left[0][1] == color2 && front[0][1] == color3) || (back[0][1] == color2 && left[0][1] == color3))
+    {
+        status = "right back L not matched";
+    }
+    else if((right[0][1] == color2 && back[0][1] == color3))
+    {
+        status = "right back L matched";
+    }
+
+    else if((right[0][1] == color3 && back[0][1] == color4) || (front[0][1] == color3 && right[0][1] == color4) || (left[0][1] == color3 && front[0][1] == color4))
+    {
+        status = "back left L not matched";
+    }
+    else if((back[0][1] == color3 && left[0][1] == color4))
+    {
+        status = "back left L matched";
+    }
+
+    else if((back[0][1] == color4 && left[0][1] == color1) || (right[0][1] == color4 && back[0][1] == color1) || (front[0][1] == color4 && right[0][1] == color1))
+    {
+        status = "front left L not matched";
+    }
+    else if((front[0][1] == color1 && left[0][1] == color4))
+    {
+        status = "front left L matched";
+    }
+
+    else if((left[0][1] == color1 && right[0][1] == color3) || (back[0][1] == color1 && front[0][1] == color3) || (right[0][1] == color1 && left[0][1] == color3))
+    {
+        status = "opposite front back not set";
+    }
+    else if((front[0][1] == color1 && back[0][1] == color3))
+    {
+        status = "opposite front back set";
+    }
+
+    else if((front[0][1] == color2 && back[0][1] == color4) || (left[0][1] == color2 && right[0][1] == color4) || (back[0][1] == color2 && front[0][1] == color4))
+    {
+        status = "opposite right left not set";
+    }
+    else if((right[0][1] == color2 && left[0][1] == color4))
+    {
+        status = "opposite right left set";
+    }
+
+    return status;
+}
+
+void Rubix::set_yellow_edges()
+{
+    R(); U(); Rp(); U(); R(); Up(); Up(); Rp();
+}
+
+
+
+void Rubix::yellow_corners()
+{
+    green_front();
+    std::cout << "Beginning solution for Yellow Corners" << std::endl;
+
+    while(scan_yellow_corners() != 4)
+    {
+        
+        if(scan_yellow_corners() == 0)
+        {
+            
+            set_yellow_corners();
+        }
+        
+
+        else if(scan_yellow_corners() > 0 && scan_yellow_corners() < 4)
+        {
+            while(position_yellow_corners() != "corner match")
+            {
+                std::cout << "test" << std::endl;
+                turn_cube_right();
+            }
+            
+            set_yellow_corners();
+            
+            
+        }
+        
+    }
+
+    std::cout << "Yellow Corners Complete" << std::endl;
+    display_cube();
+
+}
+
+int Rubix::scan_yellow_corners()
+{
+    int matches = 0;
+    for(int i = 0; i < 4; i++)
+    {
+        if((front[0][2] == front[1][1] || front[0][2] == top[1][1] || front[0][2] == right[1][1]) &&
+           (top[2][2] == front[1][1] || top[2][2] == top[1][1] || top[2][2] == right[1][1]) &&
+           (right[0][0] == front[1][1] || right[0][0] == top[1][1] || right[0][0] == right[1][1]))
+        {
+            matches++;
+        }
+        turn_cube_right();
+    }
+
+    return matches;
+}
+
+std::string Rubix::position_yellow_corners()
+{
+    std::string position = "";
+    if((front[0][2] == front[1][1] || front[0][2] == top[1][1] || front[0][2] == right[1][1]) &&
+        (top[2][2] == front[1][1] || top[2][2] == top[1][1] || top[2][2] == right[1][1]) &&
+        (right[0][0] == front[1][1] || right[0][0] == top[1][1] || right[0][0] == right[1][1]))
+        {
+            position = "corner match";
+        }
+
+    return position;
+}
+
+void Rubix::set_yellow_corners()
+{
+    U(); R(); Up(); Lp(); U(); Rp(); Up(); L();
+}
+
+
+
+void Rubix::final_step()
+{
+    green_front();
+    flip_cube_clockwise();
+
+    std::cout << "Beginning Final Step" << std::endl;
+
+    for(int i = 0; i < 4; i++)
+    {
+        while(bottom[2][0] != bottom[1][1])
+        {
+            right_shimmy();
+        }
+        D();
+    }
+
+    std::cout << "Cube Complete :) " << std::endl;
+    display_cube();
+}
+
 
 
 
