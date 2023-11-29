@@ -3,9 +3,11 @@
 class Rubix
 {
 public:
-  char top[3][3]={{'R','Y','B'},{'Y','Y','Y'},{'Y','Y','O'}}, front[3][3] = {{'G','G','Y'},{'G','G','G'},{'G','G','G'}}, 
-       bottom[3][3] = {{'W','W','W'},{'W','W','W'},{'W','W','W'}}, left[3][3] = {{'B','R','R'},{'R','R','R'},{'R','R','R'}}, 
-       right[3][3] = {{'G','O','Y'},{'O','O','O'},{'O','O','O'}}, back[3][3] = {{'O','B','Y'},{'B','B','B'},{'B','B','B'}};
+  char top[3][3]={{'Y','R','Y'},{'Y','Y','R'},{'B','O','G'}}, front[3][3] = {{'Y','G','Y'},{'O','G','R'},{'G','G','G'}}, 
+       bottom[3][3] = {{'W','W','W'},{'W','W','W'},{'W','W','W'}}, left[3][3] = {{'B','G','R'},{'B','R','Y'},{'R','R','R'}}, 
+       right[3][3] = {{'R','G','G'},{'B','O','B'},{'O','O','O'}}, back[3][3] = {{'O','Y','O'},{'O','B','Y'},{'B','B','B'}};
+
+  std::vector<std::vector<std::string>> solution = {{""}, {""}, {""}, {""},{""},{""},{""},{""}};
   
   
   void make_cube(char , char , char , char , char , char);
@@ -13,6 +15,10 @@ public:
   
   void display_cube();
   void scramblecube();
+  void record_solution(int rownum, std::string rotation);
+  void solution_rotations();
+
+  
   
   // rotational functions for the entire cube. Gives us the ability to manuver the cube in code like we would irl
   void flip_cube_clockwise();
@@ -59,7 +65,6 @@ public:
   void right_shimmy();
   void left_shimmy();
   std::string scan_corners(char color1, char color2);
-  void set_corner();
   bool bottom_corners_check();
   bool adj_corners_check();
 

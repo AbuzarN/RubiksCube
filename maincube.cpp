@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <ctime>
 #include <cstdlib>
+#include <vector>
 #include "Rubix.cpp"
 #include "Rubix.hpp"
 
@@ -13,7 +14,7 @@ int main()
 
     Rubix cube;
     cube.make_cube('W','G','Y','O','R','B');
-    std::cout << "Fresh cube!" << std::endl;
+    std::cout << "Fresh Cube!" << std::endl;
     cube.display_cube();
     cube.scramblecube();
     cube.white_cross();
@@ -23,18 +24,16 @@ int main()
     cube.yellow_edges();
     cube.yellow_corners();
     cube.final_step();
-    
-    
+    cube.solution_rotations();
+   
+
+   
+
+  
+
+ 
     
 
-    
-    
-    
-    
-   
-    
-    
-    
 
     return 0;
 }
