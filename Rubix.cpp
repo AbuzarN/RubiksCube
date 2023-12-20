@@ -77,12 +77,22 @@ void Rubix::scramblecube()
   std::cout << "Casting a spell to scramble the cube" << std::endl;
   srand(time(NULL));
   int move[20];
+  int i = 0;
   std::string rotations[20];
-  for(int i = 0; i < 20; i++){
 
-    move[i] = 1 + rand() % 10;
+  move[0] = 1 + rand() % 10;
+
+  for(int i = 1; i < 20; i++)
+  {
+     move[i] = 1 + rand() % 10;
+    while(move[i] == move[i-1])
+    {
+        move[i] = 1 + rand() % 10;
+    }
+    
     
   }
+  
 
     for(int i = 0; i < 20; i++){
       
