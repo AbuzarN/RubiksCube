@@ -506,7 +506,7 @@ void Rubix::white_cross()
     {
         std::cout << "White cross is on top but adjacent pieces do not match" << std::endl;
         green_front(); 
-        record_solution(1, "green front");
+        record_solution(1, "[G-F]");
         cross_to_bottom(); 
         std::cout << "Pieces moved to bottom" << std::endl;
         display_cube();
@@ -605,7 +605,7 @@ void Rubix::cross_to_bottom()
         else
         {
             turn_cube_right();
-            record_solution(1, "turn cube right");
+            record_solution(1, "->");
         }
     }
    
@@ -694,12 +694,12 @@ void Rubix::middle_cross_check()
         else
         {
             turn_cube_right();
-            record_solution(1, "turn cube right"); 
+            record_solution(1, "->"); 
         }
     }
 
     green_front();
-    record_solution(1, "green front");
+    record_solution(1, "[G-F]");
 }
 
 void Rubix::set_cross()
@@ -716,10 +716,10 @@ void Rubix::set_cross()
         F();
         record_solution(1, "F");
         turn_cube_right();
-        record_solution(1, "turn cube right");
+        record_solution(1, "->");
     }
     green_front();
-    record_solution(1, "green front");
+    record_solution(1, "[G-F]");
 }
 
 
@@ -730,7 +730,7 @@ void Rubix::white_corners()
     record_solution(2, "White Corners Rotations:");
 
     green_front();
-    record_solution(2, "green front");
+    record_solution(2, "[G-F]");
     flip_cube_clockwise();
     record_solution(2, "flip cube clock-wise");
     std::cout << "Begining white corners solution" << std::endl;
@@ -744,7 +744,7 @@ void Rubix::white_corners()
         {
             std::cout << "This corner has already been set. Moving on" << std::endl;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
         }
 
         else if(scan_corners(color1, color2) == "top right")
@@ -753,11 +753,11 @@ void Rubix::white_corners()
             while(scan_corners(color1, color2) != "final position")
             {
                 right_shimmy();
-                record_solution(2, "right shimmy");
+                record_solution(2, "R-Shim");
             }
             std::cout << "corner set" << std::endl;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
         }
 
         else if(scan_corners(color1, color2) == "bottom right")
@@ -766,11 +766,11 @@ void Rubix::white_corners()
             while(scan_corners(color1, color2) != "final position")
             {
                 right_shimmy();
-                record_solution(2, "right shimmy");
+                record_solution(2, "R-Shim");
             }
             std::cout << "corner set" << std::endl;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
         }
 
         else if(scan_corners(color1, color2) == "top left")
@@ -781,28 +781,28 @@ void Rubix::white_corners()
             while(scan_corners(color1, color2) != "final position")
             {
                 right_shimmy();
-                record_solution(2, "right shimmy");
+                record_solution(2, "R-Shim");
             }
             std::cout << "corner set" << std::endl;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
         }
 
         else if(scan_corners(color1, color2) == "bottom left")
         {
             std::cout << "piece found on bottom left" << std::endl;
             left_shimmy();
-            record_solution(2, "left shimmy");
+            record_solution(2, "L-Shim");
             Up();
             record_solution(2, "Up");
             while(scan_corners(color1, color2) != "final position")
             {
                 right_shimmy();
-                record_solution(2, "right shimmy");
+                record_solution(2, "R-Shim");
             }
             std::cout << "corner set" << std::endl;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
         }
 
         else if(scan_corners(color1, color2) == "not here")
@@ -810,12 +810,12 @@ void Rubix::white_corners()
             std::cout << "piece was not found on this face. Searching the others" << std::endl;
             int turns = 1;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
             
             while(scan_corners(color1, color2) == "not here")
             {
                 turn_cube_right();
-                record_solution(2, "turn cube right");
+                record_solution(2, "->");
                 turns++;
             }
             if(scan_corners(color1, color2) == "top left" || scan_corners(color1, color2) == "top right")
@@ -824,7 +824,7 @@ void Rubix::white_corners()
                 for(int i = 0; i != turns; i++)
                 {
                     turn_cube_left();
-                    record_solution(2, "turn cube left");
+                    record_solution(2, "<-");
                 }
                 while(scan_corners(color1, color2) != "top right")
                 {
@@ -837,11 +837,11 @@ void Rubix::white_corners()
             {
                 std::cout << "Piece found on the bottom left of a different face" << std::endl;
                 left_shimmy();
-                record_solution(2, "left shimmy");
+                record_solution(2, "L-Shim");
                 for(int i = 0; i != turns; i++)
                 {
                     turn_cube_left();
-                    record_solution(2, "turn cube left");
+                    record_solution(2, "<-");
                 }
                 while(scan_corners(color1, color2) != "top right")
                 {
@@ -853,11 +853,11 @@ void Rubix::white_corners()
             else if(scan_corners(color1, color2) == "bottom right")
             {
                 right_shimmy();
-                record_solution(2, "right shimmy");
+                record_solution(2, "R-Shim");
                 for(int i = 0; i != turns; i++)
                 {
                     turn_cube_left();
-                    record_solution(2, "turn cube left");
+                    record_solution(2, "<-");
                 }
                 while(scan_corners(color1, color2) != "top right")
                 {
@@ -869,11 +869,11 @@ void Rubix::white_corners()
             while(scan_corners(color1, color2) != "final position")
             {
                 right_shimmy();
-                record_solution(2, "right shimmy");
+                record_solution(2, "R-Shim");
             }
             std::cout << "corner set" << std::endl;
             turn_cube_right();
-            record_solution(2, "turn cube right");
+            record_solution(2, "->");
         }
     }
 
@@ -966,7 +966,7 @@ void Rubix::second_layer()
 {
     record_solution(3, "Second Layer Rotations:");
     green_front();
-    record_solution(3, "green front");
+    record_solution(3, "[G-F]");
     std::cout << "Starting to work the second layer" << std::endl;
     
     while(side_pieces_check() == false)
@@ -978,7 +978,7 @@ void Rubix::second_layer()
         {
             std::cout << "This piece is already in its final position. Moving on to the next face" << std::endl;
             turn_cube_right();
-            record_solution(3, "turn cube right");
+            record_solution(3, "->");
         }
         else if(scan_side_pieces(color1, color2) == "right middle")
         {
@@ -991,7 +991,7 @@ void Rubix::second_layer()
             record_solution(3, "pop right piece");
             std::cout << "Piece set. Moving on" << std::endl;
             turn_cube_right();
-            record_solution(3, "turn cube right");
+            record_solution(3, "->");
         }
         else if(scan_side_pieces(color1, color2) == "top middle matching front")
         {
@@ -1000,21 +1000,21 @@ void Rubix::second_layer()
             record_solution(3, "pop right piece");
             std::cout << "Piece set. Moving on" << std::endl;
             turn_cube_right();
-            record_solution(3, "turn cube right");
+            record_solution(3, "->");
 
         }
         else if(scan_side_pieces(color1, color2) == "top middle matching right")
         {
             std::cout << "The piece is in the top middle and matches the right face. Setting now" << std::endl;
             turn_cube_left();
-            record_solution(3, "turn cube left");
+            record_solution(3, "<-");
             Up();
             record_solution(3, "Up");
             pop_piece_left();
             record_solution(3, "pop left piece");
             std::cout << "Piece set. Moving on" << std::endl;
             turn_cube_right();
-            record_solution(3, "turn cube right");
+            record_solution(3, "->");
 
         }
         else if(scan_side_pieces(color1, color2) == "left middle")
@@ -1029,7 +1029,7 @@ void Rubix::second_layer()
             record_solution(3, "pop right piece");
             std::cout << "Piece set. Moving on" << std::endl;
             turn_cube_right();
-            record_solution(3, "turn cube right");
+            record_solution(3, "->");
 
         }
         else if(scan_side_pieces(color1, color2) == "not here")
@@ -1037,12 +1037,12 @@ void Rubix::second_layer()
             std::cout << "The piece we need is not on this face. Searching the other faces now" << std::endl;
             int turns = 1;
             turn_cube_right();
-            record_solution(3, "turn cube right");
+            record_solution(3, "->");
 
             while(scan_side_pieces(color1, color2) == "not here")
             {
                 turn_cube_right();
-                record_solution(3, "turn cube right");
+                record_solution(3, "->");
                 turns++;
             }
 
@@ -1052,7 +1052,7 @@ void Rubix::second_layer()
                 for(int i = 0; i != turns; i++)
                 {
                     turn_cube_left();
-                    record_solution(3, "turn cube left");
+                    record_solution(3, "<-");
                     Up();
                     record_solution(3, "Up");
                 }
@@ -1060,7 +1060,7 @@ void Rubix::second_layer()
                 pop_piece_right();
                 record_solution(3, "pop right piece");
                 turn_cube_right();
-                record_solution(3, "turn cube right");
+                record_solution(3, "->");
             }
             else if(scan_side_pieces(color1, color2) == "top middle matching right")
             {
@@ -1068,22 +1068,22 @@ void Rubix::second_layer()
                 for(int i = 0; i != turns; i++)
                 {
                     turn_cube_left();
-                    record_solution(3, "turn cube left");
+                    record_solution(3, "<-");
                     Up();
                     record_solution(3, "Up");
                 }
                 std::cout << "Piece brought back. Setting into final position" << std::endl;
                 turn_cube_left();
-                record_solution(3, "turn cube left");
+                record_solution(3, "<-");
 
                 Up();
                 record_solution(3, "Up");
                 pop_piece_left();
                 record_solution(3, "pop right piece");
                 turn_cube_right();
-                record_solution(3, "turn cube right");
+                record_solution(3, "->");
                 turn_cube_right();
-                record_solution(3, "turn cube right");
+                record_solution(3, "->");
             }
             else if(scan_side_pieces(color1, color2) == "left middle")
             {
@@ -1095,7 +1095,7 @@ void Rubix::second_layer()
                 for(int i = 0; i != turns; i++)
                 {
                     turn_cube_left();
-                    record_solution(3, "turn cube left");
+                    record_solution(3, "<-");
                     Up();
                     record_solution(3, "Up");
                 }
@@ -1109,17 +1109,17 @@ void Rubix::second_layer()
                 else
                 {
                     turn_cube_left();
-                    record_solution(3, "turn cube left");
+                    record_solution(3, "<-");
                     Up();
                     record_solution(3, "Up");
                     pop_piece_left();
                     record_solution(3, "pop left piece");
                     turn_cube_right();
-                    record_solution(3, "turn cube right");
+                    record_solution(3, "->");
                 }
 
                 turn_cube_right();
-                record_solution(3, "turn cube right");
+                record_solution(3, "->");
 
             }
 
@@ -1203,7 +1203,7 @@ void Rubix::yellow_cross()
 {
     record_solution(4, "Yellow Cross Solution:");
     green_front();
-    record_solution(4, "green front");
+    record_solution(4, "[G-F]");
     std::cout << "Beginning solution for yellow cross" << std::endl;
 
     const char topcolor = top[1][1];
@@ -1231,7 +1231,7 @@ void Rubix::yellow_cross()
         F();
         record_solution(4, "F");
         right_shimmy();
-        record_solution(4, "right shimmy");
+        record_solution(4, "R-Shim");
         Fp();
         record_solution(4, "Fp");
     }
@@ -1272,7 +1272,7 @@ void Rubix::yellow_edges()
     record_solution(5, "Yellow Edges Solution:");
 
     green_front();
-    record_solution(5, "green front");
+    record_solution(5, "[G-F]");
     const char frontcolor = front[1][1], rightcolor = right[1][1], backcolor = back[1][1], leftcolor = left[1][1];
     std::cout << "Beginning solution for Yellow Edges" << std::endl;
 
@@ -1298,7 +1298,7 @@ void Rubix::yellow_edges()
             }
             std::cout << "front right set. positioning now" << std::endl;
             turn_cube_right();
-            record_solution(5, "turn cube right");
+            record_solution(5, "->");
             std::cout << "front right positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1307,7 +1307,7 @@ void Rubix::yellow_edges()
         {
             std::cout << "front right already set. positioning now" << std::endl;
             turn_cube_right();
-            record_solution(5, "turn cube right");
+            record_solution(5, "->");
             std::cout << "front right positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1342,7 +1342,7 @@ void Rubix::yellow_edges()
             }
             std::cout << "back left set. positioning now" << std::endl;
             turn_cube_left();
-            record_solution(5, "turn cube left");
+            record_solution(5, "<-");
             std::cout << "back left positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1351,7 +1351,7 @@ void Rubix::yellow_edges()
         {
             std::cout << "back left already set. positioning now" << std::endl;
             turn_cube_left();
-            record_solution(5, "turn cube left");
+            record_solution(5, "<-");
             std::cout << "back left positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1367,9 +1367,9 @@ void Rubix::yellow_edges()
             }
             std::cout << "front left set. positioning now" << std::endl;
             turn_cube_left();
-            record_solution(5, "turn cube left");
+            record_solution(5, "<-");
             turn_cube_left();
-            record_solution(5, "turn cube left");
+            record_solution(5, "<-");
             std::cout << "front left positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1378,9 +1378,9 @@ void Rubix::yellow_edges()
         {
             std::cout << "front left already set. positioning now" << std::endl;
             turn_cube_left();
-            record_solution(5, "turn cube left");
+            record_solution(5, "<-");
             turn_cube_left();
-            record_solution(5, "turn cube left");
+            record_solution(5, "<-");
             std::cout << "front left positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1396,7 +1396,7 @@ void Rubix::yellow_edges()
             }
             std::cout << "front back opposite set. positioning now" << std::endl;
             turn_cube_right();
-            record_solution(5, "turn cube right");
+            record_solution(5, "->");
             std::cout << "front back opposite positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1405,7 +1405,7 @@ void Rubix::yellow_edges()
         {
             std::cout << "front back opposite already set. positioning now" << std::endl;
             turn_cube_right();
-            record_solution(5, "turn cube right");
+            record_solution(5, "->");
             std::cout << "front back opposite positioned. performing rotations" << std::endl;
             set_yellow_edges();
             record_solution(5, "set yellow edges");
@@ -1524,7 +1524,7 @@ void Rubix::yellow_corners()
 {
     record_solution(6, "Yellow Corners Solution:");
     green_front();
-    record_solution(6, "green front");
+    record_solution(6, "[G-F]");
     std::cout << "Beginning solution for Yellow Corners" << std::endl;
 
     while(scan_yellow_corners() != 4)
@@ -1543,7 +1543,7 @@ void Rubix::yellow_corners()
             while(position_yellow_corners() != "corner match")
             {
                 turn_cube_right();
-                record_solution(6, "turn cube right");
+                record_solution(6, "->");
             }
             
             set_yellow_corners();
@@ -1622,7 +1622,7 @@ void Rubix::final_step()
             while(bottom[2][0] != bottom[1][1])
             {
                 right_shimmy();
-                record_solution(7, "right shimmy");
+                record_solution(7, "R-Shim");
             }
             D();
             record_solution(7, "D");
