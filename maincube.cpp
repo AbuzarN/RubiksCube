@@ -14,7 +14,13 @@ int main()
     std::cout << "Fresh Cube!" << std::endl;
     cube.display_cube();
     cube.scramblecube();
-
+    cube.white_cross();
+    cube.white_corners();
+    cube.second_layer();
+    cube.yellow_cross();
+    cube.yellow_edges();
+    cube.yellow_corners();
+    cube.final_step();
     cube.solution_rotations();
 
     return 0;
